@@ -10,9 +10,12 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post('/payment', async (req, res) => {
+  const {paymentMethodType, currency} = req.body;
+
   const paymentIntent = await stripe.paymentIntents.create({
     amount: 5000,
-    currency: "usd",
+    currency: currency,
+    payment_method_types: [paymentMethodType],
   });
 
   res.json({clientSecret: paymentIntent.client_secret});
