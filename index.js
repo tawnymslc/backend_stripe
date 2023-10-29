@@ -10,11 +10,12 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post("/payment", async (req, res) => {
-  const intent = stripe.paymentIntents.create({
+  const paymentIntent = await stripe.paymentIntents.create({
     amount: 5000,
     currency: "usd",
-  })
+  });
+
   res.json({clientSecret: paymentIntent.client.secret});
-  })
+});
 
 app.listen(4243, () => console.log('Running on port 4243'));
