@@ -13,8 +13,6 @@ app.post("/payment", cors(), async (req, res, next) => {
   const intent = stripe.paymentIntents.create({
     amount: 5000,
     currency: "usd",
-    description: "Domain Purchase",
-    payment_method: id,
     confirm: true
   })
   .then(payment => {
