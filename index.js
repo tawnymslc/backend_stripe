@@ -10,9 +10,8 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post("/payment", cors(), async (req, res, next) => {
-  const {amount, id} = req.body;
   const intent = stripe.paymentIntents.create({
-    amount,
+    amount: 5000,
     currency: "usd",
     description: "Domain Purchase",
     payment_method: id,
