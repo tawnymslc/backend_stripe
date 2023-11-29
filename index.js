@@ -11,8 +11,8 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
+const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+const client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 
 app.post('/payment', async (req, res) => {
   const {paymentMethodType, currency, amount} = req.body;
