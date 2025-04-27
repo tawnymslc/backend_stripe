@@ -14,23 +14,6 @@ app.use(cors())
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
-app.get('/unstoppable/domains', async (req, res) => {
-  const { query } = req.query;
-
-  try {
-    const response = await axios.get(`https://api.ud-sandbox.com/partner/v3/suggestions/domains?query=${query}`, {
-      headers: {
-        'Authorization': `Bearer ${process.env.UD_API_KEY}`
-      }
-    });
-
-    res.json(response.data);
-  } catch (err) {
-    console.error('Unstoppable API error:', err.response?.data || err.message);
-    res.status(500).json({ error: 'Failed to fetch domain suggestions' });
-  }
-});
-
 app.post('/payment', async (req, res) => {
   const {paymentMethodType, currency, amount} = req.body;
 
